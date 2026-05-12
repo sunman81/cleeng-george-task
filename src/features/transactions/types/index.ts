@@ -12,7 +12,7 @@ export interface Transaction {
   id: string;
   amount: number;
   currency: string;
-  date: string; // ISO string
+  date: string;
   description: string;
   status: TransactionStatus;
 }

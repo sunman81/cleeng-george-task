@@ -1,4 +1,4 @@
-import { TransactionStatus } from "@/types/transaction";
+import { TransactionStatus } from "@/features/transactions/types";
 
 type StatusConfig = {
   label: string;
