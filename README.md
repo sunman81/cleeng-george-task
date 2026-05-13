@@ -27,12 +27,24 @@ Allows subscribers to review payment history, download invoices, and retry faile
 
 ```bash
 npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
 ```
 
 ### Run the development server
 
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
@@ -40,8 +52,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Build for production
 
 ```bash
-npm run build
-npm start
+npm run build && npm start
+# or
+pnpm build && pnpm start
 ```
 
 ---
