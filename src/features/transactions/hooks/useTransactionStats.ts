@@ -1,13 +1,8 @@
 import { useMemo } from "react";
-import { TransactionRowState } from "@/features/transactions/types";
-
-export interface TransactionStats {
-  total: number;
-  successCount: number;
-  failedCount: number;
-  pendingCount: number;
-  totalSpent: number;
-}
+import {
+  TransactionRowState,
+  TransactionStats,
+} from "@/features/transactions/types";
 
 export function useTransactionStats(
   rows: TransactionRowState[]

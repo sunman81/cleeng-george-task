@@ -10,11 +10,17 @@ interface InvoiceButtonProps {
 export function InvoiceButton({ status, onClick }: InvoiceButtonProps) {
   const isGenerating = status === "generating";
 
+  const ariaLabel = isGenerating
+    ? "Generating invoice…"
+    : status === "ready"
+    ? "Invoice downloaded"
+    : "Download invoice";
+
   return (
     <button
       onClick={onClick}
       disabled={isGenerating}
-      aria-label="Download invoice"
+      aria-label={ariaLabel}
       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold
         border border-gray-200 text-gray-600 bg-white hover:bg-gray-50 hover:border-gray-300
         disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer

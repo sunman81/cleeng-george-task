@@ -15,9 +15,12 @@ export function useTransactionSelection(
 
   const selectedRows = useMemo(() => rows.filter((r) => r.selected), [rows]);
 
-  const allFailedSelected =
-    selectableFailedRows.length > 0 &&
-    selectableFailedRows.every((r) => r.selected);
+  const allFailedSelected = useMemo(
+    () =>
+      selectableFailedRows.length > 0 &&
+      selectableFailedRows.every((r) => r.selected),
+    [selectableFailedRows]
+  );
 
   const toggleSelect = useCallback(
     (id: string) => {

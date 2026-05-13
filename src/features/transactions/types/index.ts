@@ -24,3 +24,11 @@ export interface TransactionRowState {
   invoiceStatus: InvoiceStatus;
   displayStatus: TransactionStatus;
 }
+
+export interface TransactionStats {
+  total: number;
+  successCount: number;
+  failedCount: number;
+  pendingCount: number;
+  totalSpent: number;
+}

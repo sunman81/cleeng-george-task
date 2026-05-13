@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect, useState } from "react";
+import { useCallback, useRef, useLayoutEffect, useState } from "react";
 import {
   TransactionRowState,
   Transaction,
@@ -21,9 +21,9 @@ export function useTransactionRows() {
   );
 
   const rowsRef = useRef(rows);
-  useEffect(() => {
+  useLayoutEffect(() => {
     rowsRef.current = rows;
-  }, [rows]);
+  });
 
   const updateRow = useCallback(
     (id: string, patch: Partial<TransactionRowState>) => {

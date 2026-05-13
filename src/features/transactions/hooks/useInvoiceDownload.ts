@@ -21,40 +21,42 @@ export function useInvoiceDownload(
         setTimeout(resolve, INVOICE_GENERATION_DELAY_MS)
       );
 
-      if (row) {
-        const { transaction, displayStatus } = row;
-        const content = [
-          "INVOICE",
-          "=".repeat(40),
-          `Transaction ID : ${transaction.id}`,
-          `Description    : ${transaction.description}`,
-          `Date           : ${new Date(transaction.date).toLocaleString()}`,
-          `Amount         : ${formatCurrency(
-            transaction.amount,
-            transaction.currency
-          )}`,
-          `Status         : ${displayStatus}`,
-          "=".repeat(40),
-          "Thank you for using our service.",
-        ].join("\n");
+      try {
+        if (row) {
+          const { transaction, displayStatus } = row;
+          const content = [
+            "INVOICE",
+            "=".repeat(40),
+            `Transaction ID : ${transaction.id}`,
+            `Description    : ${transaction.description}`,
+            `Date           : ${new Date(transaction.date).toLocaleString()}`,
+            `Amount         : ${formatCurrency(
+              transaction.amount,
+              transaction.currency
+            )}`,
+            `Status         : ${displayStatus}`,
+            "=".repeat(40),
+            "Thank you for using our service.",
+          ].join("\n");
 
-        const blob = new Blob([content], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
-        const anchor = document.createElement("a");
-        anchor.href = url;
-        anchor.download = `invoice-${transaction.id}.txt`;
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
-        URL.revokeObjectURL(url);
+          const blob = new Blob([content], { type: "text/plain" });
+          const url = URL.createObjectURL(blob);
+          const anchor = document.createElement("a");
+          anchor.href = url;
+          anchor.download = `invoice-${transaction.id}.txt`;
+          document.body.appendChild(anchor);
+          anchor.click();
+          document.body.removeChild(anchor);
+          URL.revokeObjectURL(url);
 
-        addToast(
-          `Invoice for ${transaction.id} downloaded successfully.`,
-          "success"
-        );
+          addToast(
+            `Invoice for ${transaction.id} downloaded successfully.`,
+            "success"
+          );
+        }
+      } finally {
+        updateRow(id, { invoiceStatus: "ready" });
       }
-
-      updateRow(id, { invoiceStatus: "ready" });
     },
     [rowsRef, updateRow, addToast]
   );

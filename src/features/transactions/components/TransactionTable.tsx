@@ -77,14 +77,25 @@ export function TransactionTable({
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50 text-sm text-gray-700">
-            {rows.map((row) => (
-              <TransactionRow
-                key={row.transaction.id}
-                row={row}
-                onToggleSelect={onToggleSelect}
-                onDownloadInvoice={onDownloadInvoice}
-              />
-            ))}
+            {rows.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={7}
+                  className="px-6 py-16 text-center text-gray-400 text-sm"
+                >
+                  No transactions found.
+                </td>
+              </tr>
+            ) : (
+              rows.map((row) => (
+                <TransactionRow
+                  key={row.transaction.id}
+                  row={row}
+                  onToggleSelect={onToggleSelect}
+                  onDownloadInvoice={onDownloadInvoice}
+                />
+              ))
+            )}
           </tbody>
         </table>
       </div>

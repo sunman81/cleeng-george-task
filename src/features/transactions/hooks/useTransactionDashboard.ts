@@ -1,5 +1,3 @@
-"use client";
-
 import { useTransactionRows } from "@/features/transactions/hooks/useTransactionRows";
 import { useTransactionSelection } from "@/features/transactions/hooks/useTransactionSelection";
 import { useTransactionRetry } from "@/features/transactions/hooks/useTransactionRetry";
