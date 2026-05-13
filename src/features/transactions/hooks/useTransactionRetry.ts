@@ -1,6 +1,7 @@
 import { useCallback, Dispatch, SetStateAction, RefObject } from "react";
 import { TransactionRowState } from "@/features/transactions/types";
 import { useToast } from "@/components/ui/Toast";
+import { randomBetween } from "@/lib/utils";
 
 const RETRY_MIN_DELAY_MS = 1000;
 const RETRY_MAX_DELAY_MS = 4000;
@@ -30,9 +31,7 @@ export function useTransactionRetry(
 
     await Promise.allSettled(
       toRetry.map(async (row) => {
-        const delay =
-          RETRY_MIN_DELAY_MS +
-          Math.random() * (RETRY_MAX_DELAY_MS - RETRY_MIN_DELAY_MS);
+        const delay = randomBetween(RETRY_MIN_DELAY_MS, RETRY_MAX_DELAY_MS);
         await new Promise((resolve) => setTimeout(resolve, delay));
 
         const succeeded = Math.random() < RETRY_SUCCESS_RATE;

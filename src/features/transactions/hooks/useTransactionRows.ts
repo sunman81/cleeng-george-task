@@ -15,9 +15,11 @@ function initRows(transactions: Transaction[]): TransactionRowState[] {
   }));
 }
 
-export function useTransactionRows() {
+export function useTransactionRows(
+  transactions: Transaction[] = mockTransactions
+) {
   const [rows, setRows] = useState<TransactionRowState[]>(() =>
-    initRows(mockTransactions)
+    initRows(transactions)
   );
 
   const rowsRef = useRef(rows);

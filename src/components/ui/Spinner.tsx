@@ -5,7 +5,8 @@ export function Spinner({ className = "h-5 w-5" }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      aria-label="Loading"
+      aria-hidden="true"
+      role="presentation"
     >
       <circle
         className="opacity-25"

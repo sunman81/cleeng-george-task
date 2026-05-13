@@ -1,4 +1,5 @@
 import { TransactionRowState } from "@/features/transactions/types";
+import { isSelectableRow } from "@/features/transactions/utils/transactionUtils";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { Spinner } from "@/components/ui/Spinner";
 import { InvoiceButton } from "@/features/transactions/components/InvoiceButton";
@@ -19,8 +20,7 @@ export function TransactionRow({
     row;
 
   const isRetrying = retryStatus === "retrying";
-  const isFailed = displayStatus === "Failed";
-  const isSelectable = isFailed && !isRetrying;
+  const isSelectable = isSelectableRow(row);
 
   return (
     <tr
